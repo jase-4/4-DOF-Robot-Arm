@@ -1,0 +1,25 @@
+# Build outputs
+Debug/
+Release/
+*.elf
+*.bin
+*.hex
+*.map
+
+garbo/
+
+# CubeIDE junk
+*.launch
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python / dev env
+.venv/
+python/__pycache__/
+*.pyc
+
+# Editors
+.vscode/
