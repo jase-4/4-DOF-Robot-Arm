@@ -49,12 +49,15 @@ A physical 4-DOF robotic arm built using **STM32 firmware**, **custom PCB design
 
 ## Repository Structure
 
+## Repository Structure
+
 ```text
 .
-├── stm32/      # STM32CubeIDE project
-├── python/        # Host control application
-├── hardware/      # PCB files and schematics
-└── cad/           # Fusion 360 exports
+├── stm32/        # STM32CubeIDE firmware (C)
+│   └── Core/Src  # Main application logic (PWM control, UART handling, control loop)
+├── python/       # Host control application (UART interface, motion commands)
+├── hardware/     # PCB design files and schematics
+└── cad/          # Fusion 360 mechanical design files
 ```
 
 ---
