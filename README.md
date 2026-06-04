@@ -52,7 +52,9 @@ A physical 4-DOF robotic arm built using **STM32 firmware**, **custom PCB design
 ```text
 .
 ├── stm32/      # STM32CubeIDE project
-└── python/        # Host control application
+├── python/        # Host control application
+├── hardware/      # PCB files and schematics
+└── cad/           # Fusion 360 exports
 ```
 
 ---
