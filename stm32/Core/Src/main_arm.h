@@ -15,7 +15,7 @@
 
 void arm_main();
 
-
+extern TIM_HandleTypeDef htim2;
 
 #endif /* SRC_MAIN_ARM_H_ */
 

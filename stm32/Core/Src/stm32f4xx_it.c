@@ -205,6 +205,12 @@ void SysTick_Handler(void)
 void TIM2_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM2_IRQn 0 */
+	if (__HAL_TIM_GET_FLAG(&htim2, TIM_FLAG_UPDATE))
+	    {
+	        __HAL_TIM_CLEAR_IT(&htim2, TIM_FLAG_UPDATE);
+
+	        controlTick = true;        // Signal main loop
+	    }
 
   /* USER CODE END TIM2_IRQn 0 */
   HAL_TIM_IRQHandler(&htim2);

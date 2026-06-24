@@ -6,43 +6,40 @@
  */
 
 #include "main_arm.h"
+volatile bool controlTick = false;
 
-void arm_main(){
+void arm_main(void)
+{
+    InitArm();
+
+    while (1)
+    {
+        if (controlTick)
+        {
+            controlTick = false;
+
+            if (checkCommandReady())
+            {
+                if (ProcessCommand(rxBuf))
+                {
+                    armState = ARM_MOVING;
+                    SendMessage("OK\n");
+                }
+                else
+                {
+                    armState = ARM_ERROR;
+                }
+            }
+
+            UpdateAllServos();
+
+            if (armState == ARM_MOVING && ArmAtTarget())
+            {
+                SendMessage("DONE\n");
+                armState = ARM_IDLE;
+            }
+        }
 
 
-	InitArm();
-
-
-	uint32_t last = HAL_GetTick();
-
-	while (1)
-	{
-		if (HAL_GetTick() - last >= 10) // 100Hz
-		{
-			last = HAL_GetTick();
-
-			if (checkCommandReady())
-			{
-				if (ProcessCommand(rxBuf))
-				{
-					armState = ARM_MOVING;
-					SendMessage("OK\n");
-				}
-				else
-				{
-					armState = ARM_ERROR;
-				}
-			}
-
-			UpdateAllServos();
-
-			if (armState == ARM_MOVING && ArmAtTarget())
-			{
-				SendMessage("DONE\n");
-				armState = ARM_IDLE;
-			}
-		}
-	}
+    }
 }
-
-
