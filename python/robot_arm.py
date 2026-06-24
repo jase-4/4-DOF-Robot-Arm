@@ -7,10 +7,10 @@ class RobotArm:
         self.pose = Pose(25, 55, 115)
 
         self.velocity = Velocity(
-            base=0.15,
-            elbow=0.10,
-            wrist=0.15,
-            gripper=0.2
+            base=200.0,
+            elbow=120.0,
+            wrist=120.0,
+            gripper=220.0
         )
 
     def move(self, base=None, elbow=None, wrist=None):

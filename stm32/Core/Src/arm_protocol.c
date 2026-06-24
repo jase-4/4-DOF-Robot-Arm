@@ -21,7 +21,7 @@ char rxBuf[RX_BUF_SIZE];
 static int rxIndex = 0;
 static uint8_t rxChar = 0;
 
-ArmState armState;
+volatile ArmState armState;
 bool commandReady = false;
 
 bool checkCommandReady(){

@@ -1,7 +1,7 @@
 import serial
 import time
 
-stm = serial.Serial('/dev/ttyACM1', 115200, timeout=1)
+stm = serial.Serial('/dev/ttyACM0', 115200, timeout=1)
 time.sleep(2)
 
 
@@ -13,7 +13,7 @@ def send(cmd: str):
     stm.write((cmd + "\n").encode())
 
 
-def wait_till_done(timeout=5):
+def wait_till_done(timeout=10):
     start = time.time()
 
     while time.time() - start < timeout:

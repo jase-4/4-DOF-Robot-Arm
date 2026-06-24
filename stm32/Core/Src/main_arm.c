@@ -7,46 +7,42 @@
 
 #include "main_arm.h"
 
-
-
 void arm_main(){
-
 
 
 	InitArm();
 
 
-	while(1)
+	uint32_t last = HAL_GetTick();
+
+	while (1)
 	{
+		if (HAL_GetTick() - last >= 10) // 100Hz
+		{
+			last = HAL_GetTick();
 
-		  if (checkCommandReady())
-		        {
+			if (checkCommandReady())
+			{
+				if (ProcessCommand(rxBuf))
+				{
+					armState = ARM_MOVING;
+					SendMessage("OK\n");
+				}
+				else
+				{
+					armState = ARM_ERROR;
+				}
+			}
 
-		            if (ProcessCommand(rxBuf))
-		            {
-		            	 armState = ARM_MOVING;
-		            	  SendMessage("OK\n");
-		           }
-		            else
-		           {
-		            	 armState = ARM_ERROR;
-		           }
+			UpdateAllServos();
 
-		        }
-
-	        UpdateAllServos();
-
-	        if (armState == ARM_MOVING && ArmAtTarget())
-	        {
-	            SendMessage("DONE\n");
-	            armState = ARM_IDLE;
-	        }
-
-
-	          }
-
+			if (armState == ARM_MOVING && ArmAtTarget())
+			{
+				SendMessage("DONE\n");
+				armState = ARM_IDLE;
+			}
+		}
 	}
-
-
+}
 
 

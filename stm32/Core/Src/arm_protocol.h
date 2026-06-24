@@ -16,7 +16,7 @@
 #define RX_BUF_SIZE 64
 
 extern bool commandReady;
-extern ArmState armState;
+extern volatile ArmState armState;
 extern char rxBuf[];
 
 void UART_START();

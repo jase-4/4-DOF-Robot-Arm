@@ -3,7 +3,11 @@ import time
 
 arm = RobotArm()
 
+
 arm.set_velocity()
+time.sleep(.2)
+
+
 
 def pickup(base):
     arm.grip(180)
@@ -22,7 +26,7 @@ def drop(base):
 
 
 arm.home()
-time.sleep(1)
+
 
 pickup(25)
 drop(155)

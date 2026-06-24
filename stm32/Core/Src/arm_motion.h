@@ -29,6 +29,8 @@ uint16_t AngleToPWM(float angle);
 bool  ArmAtTarget(void);
 
 extern RobotArm arm;
+#define CONTROL_DT 0.01f
+
 
 
 #endif /* SRC_ARM_MOTION_H_ */
